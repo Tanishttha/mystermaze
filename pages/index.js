@@ -1,13 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function Home() {
-  const [htmlContent, setHtmlContent] = useState("");
-
   useEffect(() => {
-    fetch("/index.html")
-      .then((res) => res.text())
-      .then((data) => setHtmlContent(data));
+    window.location.href = "/main.html";
   }, []);
 
-  return <div dangerouslySetInnerHTML={{ __html: htmlContent }} />;
+  return null;
 }
