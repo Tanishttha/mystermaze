@@ -1,36 +1,333 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Mystery Maze
 
-## Getting Started
+A web-based fantasy-themed puzzle and riddle-solving platform developed for the Digi Week Competition organized at J.C. Bose University of Science and Technology, YMCA.
 
-First, run the development server:
+Overview
 
-```bash
+Mystery Maze is an interactive adventure game where participants solve riddles, progress through multiple locations, earn points, and compete on a live leaderboard. The platform was developed as part of a technical competition during Digi Week and combines storytelling, gamification, and logical problem-solving into a single experience.
+
+The application allows participants to navigate through different stages, answer riddles, track their progress, and compete against other teams in real time.
+
+⸻
+
+Competition Details
+
+Field	Details
+Event	Digi Week
+Organization	J.C. Bose University of Science and Technology, YMCA
+Category	Technical Competition
+Project Type	Web Application
+Theme	Fantasy Adventure and Puzzle Solving
+Mode	Individual / Team Participation
+
+⸻
+
+Features
+
+* User Authentication
+* Team Registration
+* Interactive Riddle Challenges
+* Multi-Level Gameplay
+* Real-Time Leaderboard
+* Score Tracking System
+* Progress Saving
+* Fantasy-Themed User Interface
+* Firebase Cloud Integration
+* Responsive Design
+* Automatic Progress Recovery
+* Dynamic Question Handling
+
+⸻
+
+Technology Stack
+
+Frontend
+
+* HTML5
+* CSS3
+* JavaScript (ES6)
+
+Backend Services
+
+* Firebase Authentication
+* Cloud Firestore
+
+Hosting and Deployment
+
+* Vercel
+
+Development Tools
+
+* Visual Studio Code
+* Git
+* GitHub
+
+⸻
+
+System Architecture
+
++-------------------+
+|       User        |
++---------+---------+
+          |
+          v
++-------------------+
+|   Web Browser     |
++---------+---------+
+          |
+          v
++-----------------------------+
+|     Mystery Maze Client     |
+| HTML + CSS + JavaScript     |
++-------------+---------------+
+              |
+      +-------+-------+
+      |               |
+      v               v
++-------------+  +-------------+
+| Firebase    |  | Firestore   |
+| Auth        |  | Database    |
++-------------+  +-------------+
+      |               |
+      +-------+-------+
+              |
+              v
++-----------------------------+
+| Scores, Progress, Riddles   |
++-----------------------------+
+
+⸻
+
+Application Workflow
+
+Login
+  |
+  v
+Rules Page
+  |
+  v
+Game Dashboard
+  |
+  v
+Riddle Challenge
+  |
+  v
+Answer Validation
+  |
+  +---- Incorrect Answer
+  |            |
+  |            v
+  |      Retry Attempt
+  |
+  +---- Correct Answer
+               |
+               v
+       Score Update
+               |
+               v
+      Firebase Storage
+               |
+               v
+      Leaderboard Update
+               |
+               v
+          Next Riddle
+
+⸻
+
+Project Structure
+
+MysteryMaze
+│
+├── pages
+│   └── index.js
+│
+├── public
+│   ├── about.html
+│   ├── login.html
+│   ├── main.html
+│   ├── riddles.html
+│   ├── rules.html
+│   ├── thankyou.html
+│   ├── script.js
+│   │
+│   ├── logo.png
+│   ├── castle.png
+│   ├── commonroom.png
+│   ├── crest.png
+│   ├── forest.png
+│   ├── greathall.png
+│   ├── hogwarts.png
+│   ├── skyline.png
+│   ├── wallpaper.png
+│   ├── forbidden.png
+│   ├── next.svg
+│   ├── globe.svg
+│   ├── file.svg
+│   ├── window.svg
+│   └── other assets
+│
+├── next.config.mjs
+├── jsconfig.json
+├── package.json
+├── package-lock.json
+└── .gitignore
+
+⸻
+
+Database Design
+
+Collection: Users
+
+{
+  "uid": "user_id",
+  "name": "Player Name",
+  "email": "player@example.com",
+  "score": 120,
+  "currentLevel": 5
+}
+
+Collection: Team Scores
+
+{
+  "teamName": "Mystic Wizards",
+  "score": 450
+}
+
+Collection: Riddles
+
+{
+  "id": "R1",
+  "question": "Sample Riddle",
+  "answer": "Sample Answer"
+}
+
+⸻
+
+Installation
+
+Clone Repository
+
+git clone https://github.com/your-username/mystery-maze.git
+cd mystery-maze
+
+Install Dependencies
+
+npm install
+
+Configure Firebase
+
+Create a Firebase Project and enable:
+
+* Firebase Authentication
+* Cloud Firestore
+
+Replace the Firebase configuration with your own credentials.
+
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "XXXXXXX",
+  appId: "XXXXXXX"
+};
+
+⸻
+
+Running the Project Locally
+
+Start the development server:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+⸻
 
-## Learn More
+Deployment
 
-To learn more about Next.js, take a look at the following resources:
+Deploy on Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Install Vercel CLI:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+npm install -g vercel
 
-## Deploy on Vercel
+Deploy:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+vercel
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Production Deployment:
+
+vercel --prod
+
+⸻
+
+Screenshots
+
+Login Page
+
+Add screenshot here.
+
+Rules Page
+
+Add screenshot here.
+
+Main Dashboard
+
+Add screenshot here.
+
+Riddle Challenge Page
+
+Add screenshot here.
+
+Leaderboard
+
+Add screenshot here.
+
+⸻
+
+Future Enhancements
+
+* Multiplayer Competition Mode
+* Admin Dashboard
+* AI Generated Riddles
+* Hint and Reward System
+* Achievement Badges
+* Analytics Dashboard
+* Mobile Application Version
+* Tournament Management System
+
+⸻
+
+Learning Outcomes
+
+* Frontend Development using HTML, CSS, and JavaScript
+* Firebase Authentication Integration
+* Cloud Firestore Database Management
+* Real-Time Data Handling
+* Responsive UI Design
+* Event-Based Web Application Development
+* Team Collaboration and Project Management
+
+⸻
+
+Live Demo
+
+https://your-vercel-link.vercel.app
+
+⸻
+
+Authors
+
+Tushar Banga
+B.Tech Computer Engineering
+J.C. Bose University of Science and Technology, YMCA
+
+⸻
+
+License
+
+This project was developed for educational and competition purposes during Digi Week at J.C. Bose University of Science and Technology, YMCA.
