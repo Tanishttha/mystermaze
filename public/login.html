@@ -395,10 +395,8 @@
 </div>
 
 <script>
-// Web App URL for your Google Apps Script deployment
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbx1XADJH1lBrTb9p_Mb7Uxs_yghk25aoJlB1rkr2zW8TIW3U0l3_v8SUG9SysI6lROpIQ/exec";
 
-// ------------------------- 🔥 FIREBASE CONFIGURATION (MYSTERY MAZE) 🔥 -------------------------
 const firebaseConfig = {
     apiKey: "AIzaSyCcrlrS6mntArhEmMfOYCj4cIiDuAIiA7o", 
     authDomain: "mystery-maze-66d38.firebaseapp.com",
@@ -409,13 +407,8 @@ const firebaseConfig = {
     measurementId: "G-T6LP1TWK80"
 };
 
-// Initialize Firebase and Firestore
 const app = firebase.initializeApp(firebaseConfig);
 const db = app.firestore();
-// ------------------------- END FIREBASE CONFIGURATION -------------------------
-
-
-// Handle Login
 async function handleLogin(e) {
     e.preventDefault();
     const roll = document.getElementById('userid').value.trim();
@@ -432,24 +425,18 @@ async function handleLogin(e) {
     loginBtn.textContent = "Entering..."; 
     
     try {
-        // --- STEP 1: AUTHENTICATION CHECK (Google Sheets/GAS) ---
         loginBtn.textContent = "Verifying Credentials...";
         const gasUrl = `${WEB_APP_URL}?path=login&roll=${roll}&phone=${phone}`;
         const gasResponse = await fetch(gasUrl, { method: "GET" });
         const gasData = await gasResponse.json();
 
         if (!gasData.success) {
-            // ❌ Authentication failed
             alert("❌ Authentication Failed: " + gasData.message);
             loginBtn.disabled = false;
             loginBtn.textContent = "Enter the Maze";
             return;
         }
 
-        // --- SESSION LOCK CHECK REMOVED AS REQUESTED ---
-        
-        // --- STEP 2 (Now): SUCCESS, INITIALIZE SCORE (Firebase) ---
-        // 🌟 Initialize team score if it doesn't exist (CRITICAL for leaderboard)
         const scoreRef = db.collection("teamScores").doc(roll);
         const scoreSnap = await scoreRef.get();
 
@@ -457,26 +444,22 @@ async function handleLogin(e) {
             await scoreRef.set({
                 name: teamName,
                 score: 0,
-                roll: roll // For completeness
+                roll: roll 
             });
         }
         
         alert("✅ Welcome to the Maze!!!");
-        // Save roll number for use on the game page
         localStorage.setItem("roll", roll);
-        // Redirect to the game page
         window.location.href = "riddles.html";
         
     } catch (err) {
         console.error("Error during server communication:", err);
-        // This error handles network issues that prevent contact with GAS OR Firebase
         alert("⚠️ Fatal Error: Unable to communicate with the server. Please contact admin");
         loginBtn.disabled = false;
         loginBtn.textContent = "Enter the Maze";
     }
 }
 
-// Attach login handler to the form's submit event
 document.getElementById('loginForm').addEventListener('submit', handleLogin);
 </script>
 </body>

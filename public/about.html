@@ -249,7 +249,6 @@
   </div>
 
   <script>
-    // Add sparkle effect
     function createSparkle() {
       const sparkle = document.createElement('div');
       sparkle.classList.add('wand');
@@ -267,10 +266,9 @@
 
     setInterval(createSparkle, 1000);
 
-    // Adjust sparkle frequency based on screen size
     window.addEventListener('resize', () => {
       if (window.innerWidth < 480) {
-        setInterval(createSparkle, 1500); // Slower on small screens
+        setInterval(createSparkle, 1500); 
       } else {
         setInterval(createSparkle, 1000);
       }

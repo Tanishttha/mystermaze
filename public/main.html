@@ -442,7 +442,6 @@
   </main>
 
   <script>
-    // Background fade rotation
     const layers = [document.getElementById('bg1'), document.getElementById('bg2'), document.getElementById('bg3')];
     let idx = 0;
     setInterval(() => {
@@ -450,7 +449,6 @@
       layers.forEach((l, i) => l.style.opacity = i === idx ? '1' : '0');
     }, 9000);
 
-    // Parallax effect optimized for mobile
     function handleParallax(e) {
       const isMobile = window.innerWidth <= 768;
       if (!isMobile) {
@@ -469,7 +467,6 @@
 
     document.addEventListener('mousemove', handleParallax);
 
-    // Optimize starfield for mobile
     function createStars() {
       const starCount = window.innerWidth <= 480 ? 30 : 70;
       document.querySelectorAll('.star').forEach(star => star.remove());
@@ -486,7 +483,6 @@
     createStars();
     window.addEventListener('resize', createStars);
 
-    // Enter Maze animation and navigation
     document.getElementById("enterMaze").addEventListener("click", () => {
       const castle = document.getElementById("castle");
       castle.animate([

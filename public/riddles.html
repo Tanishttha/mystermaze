@@ -283,14 +283,20 @@
             </div>
         </section>
 
-        <!-- <aside id="sidebar" class="sidebar p-2 sm:p-4 flex flex-col">
-            <h2 class="text-lg sm:text-xl md:text-2xl mb-2 border-b border-yellow-400 pb-1">Leaderboard</h2>
-            <ul id="leaderboard-list" class="space-y-2"></ul>
-            <div id="team-stats" class="mt-4 sm:mt-6 hidden">
-                <h3 class="text-base sm:text-lg md:text-xl mb-2">Your Wand Stats</h3>
-                <ul id="stats-list" class="space-y-1 text-xs sm:text-sm"></ul>
-            </div>
-        </aside> -->
+    <aside id="sidebar" class="sidebar p-2 sm:p-4 flex flex-col">
+    <h2 class="text-lg sm:text-xl md:text-2xl mb-2 border-b border-yellow-400 pb-1">
+        Leaderboard
+    </h2>
+
+    <ul id="leaderboard-list" class="space-y-2"></ul>
+
+    <div id="team-stats" class="mt-4 sm:mt-6 hidden">
+        <h3 class="text-base sm:text-lg md:text-xl mb-2">
+            Your Wand Stats
+        </h3>
+        <ul id="stats-list" class="space-y-1 text-xs sm:text-sm"></ul>
+    </div>
+</aside>
         <button id="sidebar-toggle" class="sidebar-toggle"><i class="fas fa-bars"></i></button>
     </main>
 
@@ -298,9 +304,7 @@
     <audio id="wrong-sound" src="https://www.soundjay.com/buttons/button-10.mp3"></audio>
 
 <script>
-// ------------------------- 🔥 FIREBASE CONFIGURATION (Mystery Maze) 🔥 -------------------------
 const firebaseConfig = {
-    // UPDATED PROJECT DETAILS: mystery-maze-66d38
     apiKey: "AIzaSyCcrlrS6mntArhEmMfOYCj4cIiDuAIiA7o", 
     authDomain: "mystery-maze-66d38.firebaseapp.com",
     projectId: "mystery-maze-66d38",
@@ -310,10 +314,8 @@ const firebaseConfig = {
     measurementId: "G-T6LP1TWK80"
 };
 
-// Initialize Firebase and Firestore
 const app = firebase.initializeApp(firebaseConfig);
-const db = app.firestore(); // 'db' variable ab Firestore database ko point karega
-// ------------------------- END FIREBASE CONFIGURATION -------------------------
+const db = app.firestore(); 
 
 let team = {
     id: null,
@@ -334,7 +336,6 @@ let muted = false;
 let mouseX = 0, mouseY = 0;
 let targetX = 0, targetY = 0;
 
-// ------------------------- ELEMENTS -------------------------
 const riddleText = document.getElementById('riddle-text');
 const answerInput = document.getElementById('answer-input');
 const submitBtn = document.getElementById('submit-answer');
@@ -357,7 +358,6 @@ const riddleCard = document.querySelector('.riddle-card');
 const sidebar = document.getElementById('sidebar');
 const sidebarToggle = document.getElementById('sidebar-toggle');
 
-// ------------------------- UNIQUE USER IDENTIFIER & SEEDED SHUFFLE -------------------------
 function getUserId() {
     return localStorage.getItem('roll');
 }
@@ -389,16 +389,10 @@ function shuffleArray(array, seed) {
     }
     return array;
 }
-
-// ------------------------- SIDEBAR TOGGLE -------------------------
 sidebarToggle.addEventListener('click', () => {
     sidebar.classList.toggle('open');
     sidebarToggle.innerHTML = sidebar.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
 });
-
-// ------------------------- 🔥 FIREBASE GLOBAL PROGRESS FUNCTIONS 🔥 -------------------------
-
-// Progress को Firebase से load करेगा
 async function loadGlobalProgress() {
     try {
         const docRef = db.collection("progress").doc(team.id); 
@@ -416,15 +410,12 @@ async function loadGlobalProgress() {
         return null;
     }
 }
-
-// Progress को Firebase पर Transaction के साथ save करेगा
 async function saveGlobalProgress() {
     if (!team.id) return;
     const progressRef = db.collection("progress").doc(team.id);
 
     try {
         await db.runTransaction(async (transaction) => {
-            // Transaction ensures data integrity
             transaction.set(progressRef, userProgress);
         });
         console.log("Progress saved via transaction.");
@@ -434,35 +425,25 @@ async function saveGlobalProgress() {
     }
 }
 
-// ------------------------- GRACEFUL LOGOUT FUNCTION (Modified) -------------------------
 async function safeLogout() {
     const rollNumber = localStorage.getItem('roll');
 
     if (rollNumber) {
-        // NOTE: The onlineStatus update is removed since we are no longer using session lock logic.
         console.log("Logging out (Firebase status update skipped as per request).");
     }
 
-    // 2. Clear Local Storage and Redirect
     localStorage.removeItem('roll');
     alert("You have been logged out. Redirecting to login.");
     window.location.href = 'login.html';
 }
 
-// NOTE: The 'beforeunload' event listener for session lock has been removed.
-// ------------------------- END LOGOUT HANDLERS -------------------------
-
-// ------------------------- 🔥 FIREBASE SCORE & LEADERBOARD FUNCTIONS 🔥 -------------------------
-
-// 1. Firestore में स्कोर अपडेट करें
 async function updateScoreInFirebase(points) {
     const teamRef = db.collection("teamScores").doc(team.id);
     await teamRef.update({
-        score: firebase.firestore.FieldValue.increment(points) // स्कोर बढ़ाएँ
+        score: firebase.firestore.FieldValue.increment(points) 
     });
 }
 
-// 2. Firestore से स्कोर डिस्प्ले अपडेट करें
 async function updateScoreDisplayFirebase() {
     try {
         const teamRef = db.collection("teamScores").doc(team.id);
@@ -472,7 +453,6 @@ async function updateScoreDisplayFirebase() {
             scoreDisplay.textContent = `Points: ${team.score}`;
             team.name = docSnap.data().name || team.id; 
         } else {
-             // यदि रोल नंबर टीमस्कोर में नहीं है, तो नया डॉक्यूमेंट बनाएँ 
              await teamRef.set({ name: team.id, score: 0 });
              team.score = 0;
              scoreDisplay.textContent = `Points: 0`;
@@ -482,63 +462,63 @@ async function updateScoreDisplayFirebase() {
     }
 }
 
-// 3. Real-time Leaderboard सेटअप करें
 function setupRealtimeLeaderboard() {
-    // onSnapshot का उपयोग करते हुए, डेटा में बदलाव होते ही लीडरबोर्ड अपडेट होगा
     db.collection("teamScores")
-      .orderBy("score", "desc") // स्कोर के अनुसार क्रमबद्ध करें
+      .orderBy("score", "desc") 
       .onSnapshot((querySnapshot) => {
         const data = [];
         querySnapshot.forEach((doc) => {
-            // लीडरबोर्ड में teamScores से नाम और स्कोर दिखाता है
             data.push({ name: doc.data().name, score: doc.data().score });
         });
         
-        // Leaderboard List को अपडेट करें
-        leaderboardList.innerHTML = data.map((t, index) => `
-            <li class="leaderboard-item flex justify-between p-2 rounded bg-gray-900 border border-gray-700 ${t.name === team.name ? 'text-yellow-300 border-yellow-300' : ''}">
-                <span><i class="fas fa-trophy mr-1 ${index === 0 ? 'text-yellow-400' : index === 1 ? 'text-gray-300' : 'text-orange-600'}"></i>${t.name}</span>
-                <span>${t.score} pts</span>
-            </li>
-        `).join('');
+        leaderboardList.innerHTML = data
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3)
+    .map((t, index) => `
+        <li class="leaderboard-item flex justify-between p-2 rounded bg-gray-900 border border-gray-700 ${t.name === team.name ? 'text-yellow-300 border-yellow-300' : ''}">
+            <span>
+                <i class="fas ${
+                    index === 0 ? 'fa-crown text-yellow-400' :
+                    index === 1 ? 'fa-medal text-gray-300' :
+                    'fa-award text-orange-600'
+                } mr-2"></i>
+                ${t.name}
+            </span>
+            <span>${t.score} pts</span>
+        </li>
+    `)
+    .join('');
     });
 }
 
-// Firebase से सभी रिडल्स लोड करने का फंक्शन
 async function fetchAllRiddlesFromFirebase() {
     const riddlesSnapshot = await db.collection("riddles").get();
     const riddles = [];
     riddlesSnapshot.forEach(doc => {
-        // Document ID (R1, R2, आदि) को qid के रूप में उपयोग करें
         riddles.push({ qid: doc.id, ...doc.data() }); 
     });
     return riddles;
 }
 
-// ------------------------- INIT GAME FUNCTION (Modified) -------------------------
 async function initGame() {
     const rollNumber = getUserId();
     if (!rollNumber) {
-        // Logged out, redirect to login page.
         alert("Please log in to start the quest.");
         window.location.href = 'login.html';
         return;
     }
     team.id = rollNumber;
 
-    // 🚨 REMOVED: Session status check is removed as requested.
 
     getRiddleBtn.classList.add('hidden');
     riddleCard.classList.remove('hidden');
     progressMap.classList.remove('hidden');
 
     try {
-        // 🔄 Firebase से सीधे सभी रिडल्स प्राप्त करें
         allRiddles = await fetchAllRiddlesFromFirebase();
         
         if (allRiddles && allRiddles.length > 0) {
             
-            // 🔄 Load progress from Firebase
             const globalProgress = await loadGlobalProgress(); 
             
             if (globalProgress) {
@@ -546,10 +526,8 @@ async function initGame() {
                 teamRiddles = userProgress.riddleOrder;
                 currentRiddleIndex = userProgress.currentRiddleIndex;
             } else {
-                // Agar global progress nahi mila, toh naya progress generate karo aur save karo
                 let shuffledRiddles = shuffleArray([...allRiddles], team.id);
                 
-                // ⭐ QUEST_SIZE: 10 रिडल्स पर फिक्स किया गया
                 const QUEST_SIZE = 10; 
                 teamRiddles = shuffledRiddles.slice(0, QUEST_SIZE);
                 
@@ -559,11 +537,10 @@ async function initGame() {
                     partialRiddles: {},
                     currentRiddleIndex: 0
                 };
-                await saveGlobalProgress(); // Naya progress globally Firebase par save karo
+                await saveGlobalProgress(); 
             }
 
             progressMap.innerHTML = '';
-            // Ensure progress map reflects the size of the 10-riddle quest
             teamRiddles.forEach((riddle, index) => { 
                 const span = document.createElement('i');
                 span.classList.add('fas', 'fa-circle', 'progress-icon', 'opacity-70');
@@ -575,7 +552,6 @@ async function initGame() {
                 progressMap.appendChild(span);
             });
             
-            // 🚨 स्कोर सीधे Firebase से अपडेट करें और लीडरबोर्ड शुरू करें
             await updateScoreDisplayFirebase(); 
             setupRealtimeLeaderboard();
             loadRiddle();
@@ -589,16 +565,13 @@ async function initGame() {
     }
 }
 
-// ------------------------- GET RIDDLE BUTTON LOGIC -------------------------
 getRiddleBtn.addEventListener('click', initGame);
 
-// ------------------------- MUTE TOGGLE -------------------------
 muteBtn.addEventListener('click', () => {
     muted = !muted;
     muteBtn.innerHTML = muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
 });
 
-// ------------------------- TIMER -------------------------
 function startTimer() {
     timer = 0;
     timerText.textContent = "Time: 0s";
@@ -609,11 +582,10 @@ function startTimer() {
     }, 1000);
 }
 
-// ------------------------- LOAD RIDDLE -------------------------
 function loadRiddle() {
-    saveGlobalProgress(); // Progress ko Firebase par update karo
+    saveGlobalProgress(); 
 
-    if (currentRiddleIndex >= teamRiddles.length) { // Checks against the 10-riddle limit
+    if (currentRiddleIndex >= teamRiddles.length) { 
         showFinalLeaderboard();
         return;
     }
@@ -642,7 +614,6 @@ function loadRiddle() {
     startTimer();
 }
 
-// ------------------------- SCORE LOGIC -------------------------
 function calculatePoints(attempt) {
     if (attempt === 1) return 10;
     if (attempt === 2) return 8;
@@ -652,7 +623,6 @@ function calculatePoints(attempt) {
     return 0;
 }
 
-// ------------------------- UPDATE PROGRESS -------------------------
 function updateProgress(correct) {
     const progressIcons = progressMap.querySelectorAll('.progress-icon');
     if (progressIcons[currentRiddleIndex]) {
@@ -662,7 +632,6 @@ function updateProgress(correct) {
     }
 }
 
-// ------------------------- SUBMIT ANSWER -------------------------
 submitBtn.addEventListener('click', async () => {
     const userAnswer = answerInput.value.trim().toUpperCase();
     if (!userAnswer) return;
@@ -674,11 +643,9 @@ submitBtn.addEventListener('click', async () => {
 
     const currentRiddle = teamRiddles[currentRiddleIndex];
     try {
-        // 🚀 Firebase से सही उत्तर प्राप्त करें
         const answerSnap = await db.collection("riddles").doc(currentRiddle.qid).get();
         const correctAnswer = answerSnap.exists ? answerSnap.data().answer.toUpperCase() : null; 
 
-        // 🚀 लोकल आंसर चेक
         if (correctAnswer && userAnswer === correctAnswer) { 
             correct = true;
             clearInterval(timerInterval);
@@ -689,15 +656,14 @@ submitBtn.addEventListener('click', async () => {
             }
             userProgress.solvedRiddles[currentRiddle.qid] = { attempts: attemptsUsed, score: points };
             userProgress.currentRiddleIndex = currentRiddleIndex + 1;
-            await saveGlobalProgress(); // Progress Firebase पर save हुआ!
+            await saveGlobalProgress();
 
-            // 🌟 स्कोर सीधे Firestore में अपडेट करें
             await updateScoreInFirebase(points); 
-            await updateScoreDisplayFirebase(); // Score refresh
+            await updateScoreDisplayFirebase();
 
             const randomPraise = praises[Math.floor(Math.random() * praises.length)];
             backText.textContent = `${randomPraise} +${points} points`;
-            if (!muted) correctSound.play();
+//             if (!muted) correctSound.play();
             cardInner.style.transform = 'rotateY(180deg)';
             setTimeout(() => {
                 updateProgress(correct);
@@ -706,13 +672,13 @@ submitBtn.addEventListener('click', async () => {
                 loadRiddle();
             }, 2000);
         } else {
-            if (!muted) wrongSound.play();
+//             if (!muted) wrongSound.play();
             attemptsLeft--;
             attemptsText.textContent = `Attempts left: ${attemptsLeft}`;
             if (attemptsLeft > 0) {
                 if (!userProgress.partialRiddles) userProgress.partialRiddles = {};
                 userProgress.partialRiddles[currentRiddle.qid] = { attemptsUsed: attemptsUsed };
-                await saveGlobalProgress(); // Progress Firebase पर save हुआ!
+                await saveGlobalProgress(); 
 
                 backText.textContent = `Incorrect! Try again.`;
                 cardInner.style.transform = 'rotateY(180deg)';
@@ -731,7 +697,7 @@ submitBtn.addEventListener('click', async () => {
                     delete userProgress.partialRiddles[currentRiddle.qid];
                 }
                 userProgress.currentRiddleIndex = currentRiddleIndex + 1;
-                await saveGlobalProgress(); // Progress Firebase पर save हुआ!
+                await saveGlobalProgress(); 
 
                 setTimeout(() => {
                     cardInner.style.transform = 'rotateY(0deg)';
@@ -747,7 +713,6 @@ submitBtn.addEventListener('click', async () => {
     }
 });
 
-// ------------------------- FINAL LEADERBOARD -------------------------
 function showFinalLeaderboard() {
     clearInterval(timerInterval);
     riddleText.textContent = "🏆 Quest Completed! 🏆";
@@ -767,13 +732,11 @@ function showFinalLeaderboard() {
         return `<li class="p-1 bg-gray-900 rounded border border-gray-700">${riddleName}: ${riddle.score} pts | ${riddle.attempts} attempts</li>`;
     }).join('');
 
-    // 10 सेकंड बाद धन्यवाद पेज पर रीडायरेक्ट करें
     setTimeout(() => {
         window.location.href = 'thankyou.html';
     }, 10000);
 }
 
-// ------------------------- SMOOTH PARALLAX EFFECT -------------------------
 function lerp(start, end, factor) {
     return start + (end - start) * factor;
 }
@@ -804,16 +767,11 @@ function updateParallax() {
     requestAnimationFrame(updateParallax);
 }
 
-// Start parallax animation
 requestAnimationFrame(updateParallax);
 
-// ------------------------- INIT -------------------------
-// Check for user ID and initialize on load if found, otherwise the button starts the process.
 if (getUserId()) {
-    // If roll is in localStorage, start the game immediately
     window.onload = initGame;
 } else {
-    // If roll is not found, show the button which prompts login
     getRiddleBtn.classList.remove('hidden');
     getRiddleBtn.textContent = "Start Quest (Requires Login)";
     getRiddleBtn.addEventListener('click', () => {

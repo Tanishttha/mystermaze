@@ -208,7 +208,6 @@
     </div>
 
     <script>
-        // JavaScript for magical particle effects (sparkles)
         const canvas = document.getElementById('magic-particles');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -226,7 +225,7 @@
                 this.size = Math.random() * 3 + 1;
                 this.speedX = Math.random() * 2 - 1;
                 this.speedY = Math.random() * 2 - 1;
-                this.color = `hsl(${Math.random() * 60 + 30}, 100%, 50%)`; // Golden hues
+                this.color = `hsl(${Math.random() * 60 + 30}, 100%, 50%)`; 
             }
 
             update() {
