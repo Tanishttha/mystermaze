@@ -10,13 +10,13 @@
             margin: 0;
             padding: 0;
             font-family: 'Cinzel', serif;
-            color: #f4e8c1; /* Parchment text color */
-            background-image: url('forest.png'); /* Harry Potter themed background (Hogwarts castle or similar; replace with your image URL) */
+            color: #f4e8c1; 
+            background-image: url('forest.png'); 
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             overflow-x: hidden;
-            perspective: 1000px; /* For 3D effects */
+            perspective: 1000px; 
         }
 
         .container {
@@ -31,7 +31,7 @@
             text-align: center;
             font-family: 'Uncial Antiqua', cursive;
             font-size: 3em;
-            color: #ffd700; /* Golden snitch color */
+            color: #ffd700; 
             text-shadow: 0 0 10px #ffd700, 0 0 20px #ff4500;
             animation: glow 2s ease-in-out infinite alternate;
             margin-bottom: 40px;
@@ -43,7 +43,7 @@
         }
 
         .rule-section {
-            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent for magical overlay */
+            background-color: rgba(0, 0, 0, 0.6); 
             border: 2px solid #ffd700;
             border-radius: 10px;
             padding: 20px;
@@ -61,7 +61,7 @@
         .rule-title {
             font-family: 'Uncial Antiqua', cursive;
             font-size: 1.8em;
-            color: #ff4500; /* Fiery orange */
+            color: #ff4500;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px #000;
         }
@@ -69,7 +69,7 @@
         .rule-content {
             font-size: 1.2em;
             line-height: 1.6;
-            list-style-type: none; /* For custom bullets */
+            list-style-type: none; 
         }
 
         .rule-content ul {
@@ -82,7 +82,7 @@
         }
 
         .rule-content li::before {
-            content: '✨'; /* Magical spark */
+            content: '✨'; 
             position: absolute;
             left: 0;
             color: #ffd700;
@@ -94,7 +94,6 @@
             to { opacity: 0.5; }
         }
 
-        /* Responsive design */
         @media (max-width: 768px) {
             .title {
                 font-size: 2.5em;
@@ -109,11 +108,10 @@
             }
 
             .rule-section:hover {
-                transform: rotateY(5deg) rotateX(3deg) scale(1.03); /* Softer on mobile */
+                transform: rotateY(5deg) rotateX(3deg) scale(1.03); 
             }
         }
 
-        /* Particle effects for magic */
         canvas {
             position: fixed;
             top: 0;

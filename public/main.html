@@ -26,7 +26,6 @@
       margin: 0;
     }
 
-    /* --- Header & Logo --- */
     .header-container {
       position: fixed;
       top: 0;
@@ -61,7 +60,6 @@
       will-change: transform;
     }
 
-    /* --- Animations --- */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -98,7 +96,6 @@
       50% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.5); }
     }
     
-    /* --- Parallax Background Layers --- */
     .parallax-layer {
       position: fixed;
       inset: -50px;
@@ -113,7 +110,6 @@
       text-shadow: 0 0 15px var(--gold), 0 0 35px var(--gold-dark);
     }
 
-    /* --- Floating Gold Button --- */
     .golden-btn {
       background: linear-gradient(145deg, #ffe88a, #e6c243);
       border: 2px solid #b68b00;
@@ -134,7 +130,6 @@
       box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
     }
 
-    /* --- Houses --- */
     .house-circle {
       width: clamp(80px, 20vw, 150px);
       height: clamp(80px, 20vw, 150px);
@@ -185,7 +180,6 @@
       box-shadow: 0 0 40px var(--gold), 0 0 20px rgba(255, 215, 0, 0.8);
     }
 
-    /* --- Castle Map Circular --- */
     .castle-circle {
       width: clamp(60vw, 80vw, 380px);
       aspect-ratio: 1/1;
@@ -210,7 +204,6 @@
       50% { transform: rotateY(5deg) translateY(-10px); }
     }
 
-    /* --- Starfield --- */
     .star {
       position: absolute;
       width: clamp(2px, 0.5vw, 3px);
@@ -221,7 +214,6 @@
       z-index: 1;
     }
 
-    /* --- Button styles for About and Rules --- */
     .golden-link-btn {
       background: linear-gradient(145deg, #ffe88a, #e6c243);
       border: 2px solid #b68b00;
@@ -242,7 +234,6 @@
       box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
     }
 
-    /* --- Responsive adjustments --- */
     @media (max-width: 768px) {
       .header-container {
         padding: clamp(0.4rem, 1.5vw, 0.8rem);
