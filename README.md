@@ -1,16 +1,9 @@
-Mystery Maze
-
-A web-based fantasy-themed puzzle and riddle-solving platform developed for the Digi Week Competition organized at J.C. Bose University of Science and Technology, YMCA.
-
-Overview
-
-Mystery Maze is an interactive adventure game where participants solve riddles, progress through multiple locations, earn points, and compete on a live leaderboard. The platform was developed as part of a technical competition during Digi Week and combines storytelling, gamification, and logical problem-solving into a single experience.
-
-The application allows participants to navigate through different stages, answer riddles, track their progress, and compete against other teams in real time.
-
-⸻
-
-Competition Details
+<h1 align="center">Mystery Maze</h1>
+<h2 align="center">A web-based fantasy-themed puzzle and riddle-solving platform developed for the Digi Week Competition organized at J.C. Bose University of Science and Technology, YMCA.</h2>
+<h2>Overview</h2>
+<p>Mystery Maze is an interactive adventure game where participants solve riddles, progress through multiple locations, earn points, and compete on a live leaderboard. The platform was developed as part of a technical competition during Digi Week and combines storytelling, gamification, and logical problem-solving into a single experience.</p>
+<p>The application allows participants to navigate through different stages, answer riddles, track their progress, and compete against other teams in real time.</p>
+<h2>Competition Details</h2>
 
 Field	Details
 Event	Digi Week
