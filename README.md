@@ -27,11 +27,11 @@
     </tr>
     <tr>
         <td><b>Theme</b></td>
-        <td>Fantasy Adventure and Puzzle Solving</td>
+        <td>Harry Potter</td>
     </tr>
     <tr>
         <td><b>Mode</b></td>
-        <td>Individual / Team Participation</td>
+        <td>Team Participation</td>
     </tr>
 </table>
 <h2>Features</h2>
@@ -48,34 +48,24 @@
 * Responsive Design
 * Automatic Progress Recovery
 * Dynamic Question Handling
-
-⸻
-
-Technology Stack
-
-Frontend
+<h2>Technology Stack</h2>
+<h3>Frontend</h3>
 
 * HTML5
 * CSS3
 * JavaScript (ES6)
-
-Backend Services
+<h3>Backend Services</h3>
 
 * Firebase Authentication
 * Cloud Firestore
-
-Hosting and Deployment
+<h3>Hosting and Deployment</h3>
 
 * Vercel
-
-Development Tools
+<h3>Development Tools</h3>
 
 * Visual Studio Code
 * Git
 * GitHub
-
-⸻
-
 System Architecture
 
 +-------------------+
