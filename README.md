@@ -156,7 +156,7 @@ vercel --prod
 <h2>Screenshots</h2>
 
 ![Login page](assets/3.png)
-<align="center">Login Page</>
+<h3 align="center">Login Page</h3>
 
 ![Rule Page](assets/5.png)
 Rules Page
