@@ -48,6 +48,8 @@
 * Responsive Design
 * Automatic Progress Recovery
 * Dynamic Question Handling
+
+![Project Structure](assets/2.png)
 <h2>Technology Stack</h2>
 <h3>Frontend</h3>
 
