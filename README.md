@@ -188,7 +188,7 @@ vercel --prod
 <h2>Live Demo</h2>
 
 ```bash
-https://mystermaze25-main.vercel.app
+https://mystermaze.vercel.app
 ```
 <h3>User Id</h3>
 
