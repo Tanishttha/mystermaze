@@ -159,12 +159,10 @@ vercel --prod
 <h3 align="center">Login Page</h3>
 
 ![Rule Page](assets/5.png)
-Rules Page
+<h3 align="center">Rules Page</h3>
 
 ![Riddle](assets/4.png)
-Riddle Challenge Page
-
-
+<h3 align="center">Riddle Challenge Page</h3>
 <h2>Future Enhancements</h2>
 
 * Multiplayer Competition Mode
