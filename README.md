@@ -68,87 +68,12 @@
 * GitHub
 
 ![System Architecture](assets/1.png)
-Application Workflow
 
-Login
-  |
-  v
-Rules Page
-  |
-  v
-Game Dashboard
-  |
-  v
-Riddle Challenge
-  |
-  v
-Answer Validation
-  |
-  +---- Incorrect Answer
-  |            |
-  |            v
-  |      Retry Attempt
-  |
-  +---- Correct Answer
-               |
-               v
-       Score Update
-               |
-               v
-      Firebase Storage
-               |
-               v
-      Leaderboard Update
-               |
-               v
-          Next Riddle
 
-⸻
+<h2>Database Design</h2>
+<h3>Collection: Users</h3>
 
-Project Structure
-
-MysteryMaze
-│
-├── pages
-│   └── index.js
-│
-├── public
-│   ├── about.html
-│   ├── login.html
-│   ├── main.html
-│   ├── riddles.html
-│   ├── rules.html
-│   ├── thankyou.html
-│   ├── script.js
-│   │
-│   ├── logo.png
-│   ├── castle.png
-│   ├── commonroom.png
-│   ├── crest.png
-│   ├── forest.png
-│   ├── greathall.png
-│   ├── hogwarts.png
-│   ├── skyline.png
-│   ├── wallpaper.png
-│   ├── forbidden.png
-│   ├── next.svg
-│   ├── globe.svg
-│   ├── file.svg
-│   ├── window.svg
-│   └── other assets
-│
-├── next.config.mjs
-├── jsconfig.json
-├── package.json
-├── package-lock.json
-└── .gitignore
-
-⸻
-
-Database Design
-
-Collection: Users
-
+```bash
 {
   "uid": "user_id",
   "name": "Player Name",
@@ -156,44 +81,44 @@ Collection: Users
   "score": 120,
   "currentLevel": 5
 }
+```
+<h3>Collection: Team Scores</h3>
 
-Collection: Team Scores
-
+```bash
 {
   "teamName": "Mystic Wizards",
   "score": 450
 }
+```
+<h3>Collection: Riddles</h3>
 
-Collection: Riddles
-
+```bash
 {
   "id": "R1",
   "question": "Sample Riddle",
   "answer": "Sample Answer"
 }
+```
+<h2>Installation</h2>
+<h3>Clone Repository</h3>
 
-⸻
-
-Installation
-
-Clone Repository
-
+```bash
 git clone https://github.com/your-username/mystery-maze.git
 cd mystery-maze
+```
+<h3>Install Dependencies</h3>
 
-Install Dependencies
-
+```bash
 npm install
-
-Configure Firebase
-
+```
+<h3>Configure Firebase</h3>
 Create a Firebase Project and enable:
 
 * Firebase Authentication
 * Cloud Firestore
-
 Replace the Firebase configuration with your own credentials.
 
+```bash
 const firebaseConfig = {
   apiKey: "YOUR_API_KEY",
   authDomain: "YOUR_PROJECT.firebaseapp.com",
@@ -202,64 +127,45 @@ const firebaseConfig = {
   messagingSenderId: "XXXXXXX",
   appId: "XXXXXXX"
 };
-
-⸻
-
-Running the Project Locally
-
+```
+<h3>Running the Project Locally</h3>
 Start the development server:
 
+```bash
 npm run dev
-
+```
 Open:
 
-http://localhost:3000
-
-⸻
-
-Deployment
-
-Deploy on Vercel
-
+```bash
+http://localhost:5500
+```
+<h2>Deployment</h2>
+<h3>Deploy on Vercel</h3>
 Install Vercel CLI:
 
+```bash
 npm install -g vercel
+```
+<h3>Deploy:</h3>
+<p>vercel</p>
+<p>Production Deployment:</p>
 
-Deploy:
-
-vercel
-
-Production Deployment:
-
+```bash
 vercel --prod
+```
+<h2>Screenshots</h2>
 
-⸻
-
-Screenshots
-
+![Login page](assets/3.png)
 Login Page
 
-Add screenshot here.
-
+![Rule Page](assets/5.png)
 Rules Page
 
-Add screenshot here.
-
-Main Dashboard
-
-Add screenshot here.
-
+![Riddle](assets/4.png)
 Riddle Challenge Page
 
-Add screenshot here.
 
-Leaderboard
-
-Add screenshot here.
-
-⸻
-
-Future Enhancements
+<h2>Future Enhancements</h2>
 
 * Multiplayer Competition Mode
 * Admin Dashboard
@@ -270,9 +176,7 @@ Future Enhancements
 * Mobile Application Version
 * Tournament Management System
 
-⸻
-
-Learning Outcomes
+<h2>>Learning Outcomes</h2>
 
 * Frontend Development using HTML, CSS, and JavaScript
 * Firebase Authentication Integration
@@ -281,23 +185,25 @@ Learning Outcomes
 * Responsive UI Design
 * Event-Based Web Application Development
 * Team Collaboration and Project Management
+<h2>Live Demo</h2>
+```bash
+https://mystermaze25-main.vercel.app
+```
 
-⸻
+<h3>User Id</h3>
 
-Live Demo
+```bash
+0
+```
+<h3>Team Name</h3>
 
-https://your-vercel-link.vercel.app
+```bash
+Test
+```
+<h3>Password</h3>
 
-⸻
-
-Authors
-
-Tushar Banga
-B.Tech Computer Engineering
-J.C. Bose University of Science and Technology, YMCA
-
-⸻
-
-License
-
+```bash
+0
+```
+<h2>License</h2>
 This project was developed for educational and competition purposes during Digi Week at J.C. Bose University of Science and Technology, YMCA.
