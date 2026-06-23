@@ -67,7 +67,7 @@
 * Git
 * GitHub
 
-
+![System Architecture](assets/1.png)
 Application Workflow
 
 Login
