@@ -66,39 +66,7 @@
 * Visual Studio Code
 * Git
 * GitHub
-System Architecture
 
-+-------------------+
-|       User        |
-+---------+---------+
-          |
-          v
-+-------------------+
-|   Web Browser     |
-+---------+---------+
-          |
-          v
-+-----------------------------+
-|     Mystery Maze Client     |
-| HTML + CSS + JavaScript     |
-+-------------+---------------+
-              |
-      +-------+-------+
-      |               |
-      v               v
-+-------------+  +-------------+
-| Firebase    |  | Firestore   |
-| Auth        |  | Database    |
-+-------------+  +-------------+
-      |               |
-      +-------+-------+
-              |
-              v
-+-----------------------------+
-| Scores, Progress, Riddles   |
-+-----------------------------+
-
-⸻
 
 Application Workflow
 
