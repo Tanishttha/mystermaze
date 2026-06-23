@@ -174,7 +174,7 @@ vercel --prod
 * Mobile Application Version
 * Tournament Management System
 
-<h2>>Learning Outcomes</h2>
+<h2>Learning Outcomes</h2>
 
 * Frontend Development using HTML, CSS, and JavaScript
 * Firebase Authentication Integration
