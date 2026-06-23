@@ -5,13 +5,36 @@
 <p>The application allows participants to navigate through different stages, answer riddles, track their progress, and compete against other teams in real time.</p>
 <h2>Competition Details</h2>
 
-Field	Details
-Event	Digi Week
-Organization	J.C. Bose University of Science and Technology, YMCA
-Category	Technical Competition
-Project Type	Web Application
-Theme	Fantasy Adventure and Puzzle Solving
-Mode	Individual / Team Participation
+<table align="center">
+    <tr>
+        <th>Field</th>
+        <th>Details</th>
+    </tr>
+    <tr>
+        <td><b>Event</b></td>
+        <td>Digi Week</td>
+    </tr>
+    <tr>
+        <td><b>Organization</b></td>
+        <td>J.C. Bose University of Science and Technology, YMCA</td>
+    </tr>
+    <tr>
+        <td><b>Category</b></td>
+        <td>Technical Competition</td>
+    </tr>
+    <tr>
+        <td><b>Project Type</b></td>
+        <td>Web Application</td>
+    </tr>
+    <tr>
+        <td><b>Theme</b></td>
+        <td>Fantasy Adventure and Puzzle Solving</td>
+    </tr>
+    <tr>
+        <td><b>Mode</b></td>
+        <td>Individual / Team Participation</td>
+    </tr>
+</table>
 
 ⸻
 
