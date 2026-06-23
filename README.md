@@ -4,7 +4,6 @@
 <p>Mystery Maze is an interactive adventure game where participants solve riddles, progress through multiple locations, earn points, and compete on a live leaderboard. The platform was developed as part of a technical competition during Digi Week and combines storytelling, gamification, and logical problem-solving into a single experience.</p>
 <p>The application allows participants to navigate through different stages, answer riddles, track their progress, and compete against other teams in real time.</p>
 <h2>Competition Details</h2>
-
 <table align="center">
     <tr>
         <th>Field</th>
@@ -35,10 +34,7 @@
         <td>Individual / Team Participation</td>
     </tr>
 </table>
-
-⸻
-
-Features
+<h2>Features</h2>
 
 * User Authentication
 * Team Registration
