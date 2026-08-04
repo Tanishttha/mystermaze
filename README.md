@@ -205,5 +205,3 @@ Test
 ```bash
 0
 ```
-<h2>License</h2>
-This project was developed for educational and competition purposes during Digi Week at J.C. Bose University of Science and Technology, YMCA.
